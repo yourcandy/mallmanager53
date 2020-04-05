@@ -9,7 +9,7 @@
           <h3>后台管理系统</h3>
         </div></el-col>
         <el-col :span="1"><div class="grid-content bg-purple">
-          <a class="loginout" href="#">退出</a>
+          <a class="loginout" @click="handleSignout()" href="#">退出</a>
         </div></el-col>
       </el-row>
     </el-header>
@@ -23,7 +23,19 @@
 
 <script>
   export default {
-    name: "home"
+    beforeCreate() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        this.$router.push({name:'login'})
+      }
+    },
+    methods:{
+      handleSignout(){
+        localStorage.clear();
+        this.$message.success('退出成功');
+        this.$router.push({name:'login'})
+      }
+    }
   }
 </script>
 
