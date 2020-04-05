@@ -14,55 +14,54 @@
       </el-form-item>
       <el-button
         @click.prevent="handleLogin()"
-        class="login-btn" type="primary">登录</el-button>
+        class="login-btn" type="primary">登录
+      </el-button>
     </el-form>
   </div>
 </template>
 
 <script>
   export default {
-    data(){
+    data() {
       return {
-        formdata:{
-          username:'',
-          password:''
+        formdata: {
+          username: '',
+          password: ''
         }
       }
     },
     methods: {
-      handleLogin(){
-        this.$http.post('login',this.formdata).then(res => {
-          const {
-            data,
-            meta:{msg,status}
-          } = res.data
-          if (status === 200) {
-            this.$router.push({name:'home'});
-            this.$message.success(msg)
-          }else {
-            this.$message.warning(msg)
-          }
-        })
+      async handleLogin() {
+        const res = await this.$http.post('login', this.formdata);
+        const {data, meta: {msg, status}} = res.data;
+        if (status === 200) {
+          this.$router.push({name: 'home'});
+          this.$message.success(msg);
+        } else {
+          this.$message.warning(msg);
+        }
       }
     }
   }
 </script>
 
 <style>
-  .login-wrap{
+  .login-wrap {
     height: 100%;
     background-color: #324152;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .login-wrap .login-form{
+
+  .login-wrap .login-form {
     width: 400px;
     background-color: #fff;
     border-radius: 5px;
     padding: 30px;
   }
-  .login-wrap .login-btn{
+
+  .login-wrap .login-btn {
     width: 100%;
   }
 </style>
