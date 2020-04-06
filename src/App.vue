@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style>
-#app {
-
+  #app {
+    height: 100%;
 }
 </style>
