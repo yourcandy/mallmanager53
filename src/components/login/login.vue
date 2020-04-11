@@ -25,8 +25,8 @@
     data() {
       return {
         formdata: {
-          username: '',
-          password: ''
+          username: 'admin',
+          password: '123456'
         }
       }
     },
